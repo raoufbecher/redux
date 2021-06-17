@@ -1,8 +1,30 @@
-import { ADD_TODO, DELETE_TODO,UPDATE_TODO,FILTER_TODO, TOGGLE_TODO } from "../actions/actions";
+import { ADD_TODO, DELETE_TODO,UPDATE_TODO, TOGGLE_TODO } from "../actions/actions";
+import { v4 as uuidv4 } from "uuid";
 import { todos } from "../actions/state";
 
-export let reducer =(state=todos,action) => {
-    let newTodos
+const initialTodoState = {
+    filter: "all",
+    todo: [
+      {
+        id: uuidv4(),
+        description: "task1",
+        isDone: false
+      },
+      {
+        id: uuidv4(),
+        description: "task2",
+        isDone: true
+      },
+      {
+        id: uuidv4(),
+        description: "task3",
+        isDone: false
+      }
+    ]
+  };
+  
+export const reducer =(state=initialTodoState.todo,action) => {
+    let newTodos;
     switch (action.type) {
         case ADD_TODO:
           newTodos = [...state];
@@ -28,16 +50,15 @@ export let reducer =(state=todos,action) => {
                     return newTodos;
                 }
                 case TOGGLE_TODO:
-                    return {
-                        ...state,
-                        todos:state.map(elm=>elm.id===action.payload ? {...elm,isDone:!elm.isDone}:elm)
-                    }
-                case FILTER_TODO:
-                    return {
-                        ...state,
-                        filter:action.payload
-                    }
-    
-        }
+                    return state.map((todo) =>
+                      todo.id == action.payload ? { ...todo, isDone: !todo.isDone } : todo
+                    );
+                // case FILTER_TODO:
+                //     return {
+                //         ...state,
+                //         filter:action.payload
+                //     }
+    default:
+        
         return state;
-    }
+    }}

@@ -1,5 +1,24 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   text-align: center;
+  background-color: rgb(46, 46, 46);
+  color: aliceblue;
+  margin: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 3px 2px 4px 5px grey;
+  font-family: cursive;
+}
+button {
+  border-radius: 8px;
+  background-color: rgb(153, 218, 153);
+  margin: 4px;
+  height: 25px;
+  width: 60px;
+  color: rgb(75, 74, 74);
+  font-family: cursive;
 }
 
 .App-logo {

@@ -9,24 +9,23 @@ function Task({todo,id,description,isDone}) {
  const dispatch = useDispatch()  ;
 
     return (
-        <div>
+        <div >
             
-            <div>
-                {editable ? <input type='text' value={name} onChange={(e)=>{setName(e.target.value)}}/> 
-                :<h4 style={{textDecoration:todo.isDone? 'line-through': 'none'}} onClick={()=>dispatch(toggletodo(todo.id))}>{description}</h4> }
+            <div >
+                {editable ? (<input type='text' value={name} onChange={(e)=>{setName(e.target.value);}}/> )
+                :(<h4  style={{textDecoration:todo.isDone? 'line-through': 'none'}} onClick={()=>dispatch(toggletodo(todo.id))}>{description}</h4> )}
             </div>
             <button  onClick={() => {
                         dispatch(updatetodo({
                             ...todo,
                             description: name
-                        }))
+                        }));
                         if(editable) {
                          setName(todo.description);   
                         }
                         setEditable(!editable);
-                      
-
-                    }}> {editable?'update':'Edit'}</button>
+                     }}> {" "}
+                    {editable ? 'update':'Edit'}</button>
             <button onClick={()=>dispatch(deletetodo(id))}>Delete</button>
         </div>
     )

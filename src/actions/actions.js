@@ -4,6 +4,7 @@ export const UPDATE_TODO ='UPDATE_TODO'
 export const FILTER_TODO ='FILTER_TODO'
 export const TOGGLE_TODO ='TOGGLE_TODO'
 
+export const SET_FILTER = "SET_FILTER";
 export function addtodo (todo) {
     return {
         type : ADD_TODO,
@@ -22,15 +23,14 @@ export function updatetodo (todo) {
         payload : todo
     }
 }
-    export function filtertodo (todo) {
-        return {
+    export const filtertodo =(filter)=> ({
+        
             type : FILTER_TODO,
-            payload : todo
-        }
-    }
-        export function toggletodo (todo) {
-            return {
-                type : TOGGLE_TODO,
-                payload : todo
-            }
-}  
+            payload : filter
+        
+    });
+    export const toggletodo = (id) => ({
+        type: TOGGLE_TODO,
+        payload: id
+      });
+
